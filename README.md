@@ -1,6 +1,6 @@
 # Aryan Portfolio
 
-Personal portfolio website. **Status: Phase 1 — development environment prepared; site not yet built.**
+Personal portfolio website. **Status: scaffolded, deploy-ready placeholder; site not yet designed.**
 
 Planned stack: Next.js (App Router), TypeScript, Tailwind CSS, shadcn/ui, Motion for React, Lucide, deployed on Vercel.
 
@@ -20,3 +20,16 @@ Planned stack: Next.js (App Router), TypeScript, Tailwind CSS, shadcn/ui, Motion
 ## Deferred integrations
 - **shadcn MCP:** enable after scaffolding, once `components.json` exists: `npx shadcn@latest mcp init --client claude`.
 - **21st.dev Magic MCP:** needs a personal API key from https://21st.dev/mcp. Add locally (never commit): `claude mcp add --scope user ...` per the 21st docs, with the key in an environment variable.
+
+## Develop
+```bash
+npm install
+npm run dev
+```
+Checks: `npm run lint`, `npm run typecheck`, `npm run build`.
+
+## Deploy (Vercel)
+Import this repo in Vercel; the Next.js preset is auto-detected (no env vars needed). Branch previews are created per branch; production deploys from the production branch (`main`) after merge.
+
+## Known notes
+- `npm audit --omit=dev` reports a moderate `deepmerge` prototype-pollution advisory via the `shadcn` package (a build/CLI helper, not shipped to the browser). Re-check when shadcn releases a fix; do not use `npm audit fix --force` (it proposes a breaking downgrade).

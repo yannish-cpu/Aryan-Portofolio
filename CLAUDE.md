@@ -2,7 +2,12 @@
 
 Personal portfolio site. Premium, editorial, professional. Deployed on Vercel from GitHub.
 
-**Status:** Phase 1 (environment only). No app scaffolded yet. Do not scaffold or build UI until asked.
+**Status:** App scaffolded (empty placeholder page only). Design system not finalized; do not build real UI/sections until asked.
+
+**Next.js version note:** see `AGENTS.md` — this Next.js version differs from older docs; read `node_modules/next/dist/docs/` before writing Next-specific code.
+
+## Commands
+`npm run dev` · `npm run lint` · `npm run typecheck` · `npm run build` (all four must pass before commit/deploy).
 
 ## Stack (planned)
 Next.js (App Router) · TypeScript (strict) · Tailwind CSS v4 · shadcn/ui · Motion for React (`motion`) · Lucide · Vercel.
@@ -29,5 +34,5 @@ Node ≥ 20.9. Pick one package manager at scaffold time and keep to it.
 - `.claude/skills/ui-ux-pro-max` — design intelligence (`python3 .claude/skills/ui-ux-pro-max/scripts/search.py "<query>" --design-system`). Needs Python 3.
 - `.claude/skills/frontend-design` — Anthropic's aesthetic-direction skill (Apache-2.0).
 - `.claude/skills/ui-styling` — shadcn/Tailwind reference bundled with UI/UX Pro Max.
-- MCP (`.mcp.json`): `playwright`, `chrome-devtools` for browser verification. shadcn and 21st MCP are intentionally not enabled yet (see README).
+- MCP (`.mcp.json`): `playwright`, `chrome-devtools` for browser verification. `components.json` now exists, so shadcn MCP can be enabled (see README). 21st MCP needs a personal API key.
 - Rules: `.claude/rules/`.
