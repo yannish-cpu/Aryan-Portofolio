@@ -1,6 +1,6 @@
 # Aryan Portfolio
 
-Personal portfolio website. **Status: scaffolded, deploy-ready placeholder; site not yet designed.**
+Personal portfolio website. **Status: v1 live — single-page portfolio.** Edit copy, projects and socials in `src/content/site.ts`.
 
 Planned stack: Next.js (App Router), TypeScript, Tailwind CSS, shadcn/ui, Motion for React, Lucide, deployed on Vercel.
 

@@ -2,7 +2,7 @@
 
 Personal portfolio site. Premium, editorial, professional. Deployed on Vercel from GitHub.
 
-**Status:** App scaffolded (empty placeholder page only). Design system not finalized; do not build real UI/sections until asked.
+**Status:** v1 single-page portfolio live (hero, work, about, contact). Content lives in `src/content/site.ts`; design tokens in `src/app/globals.css`.
 
 **Next.js version note:** see `AGENTS.md` — this Next.js version differs from older docs; read `node_modules/next/dist/docs/` before writing Next-specific code.
 

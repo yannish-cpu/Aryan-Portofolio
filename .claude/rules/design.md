@@ -1,4 +1,4 @@
-# Design Guidelines (direction only — design system NOT finalized)
+# Design Guidelines
 
 ## Goals
 - Premium, professional, modern-editorial identity. Confident, restrained, specific to Aryan — not a template.
@@ -19,4 +19,4 @@
 
 ## Process
 - Before designing any UI, consult `.claude/skills/frontend-design` (aesthetic direction) and `.claude/skills/ui-ux-pro-max` (`scripts/search.py` for palettes, type pairings, UX checks). Treat their output as input, not as the answer: reject suggestions that violate "Avoid" above.
-- Do not hard-code a design system until the user approves one. Tokens (color, type, spacing, radius, motion) live in one place once approved.
+- v1 direction: warm near-black, off-white ink, one muted brass accent; Instrument Serif (display) + Geist (text). Tokens live in `src/app/globals.css` — change them there, not ad hoc.
