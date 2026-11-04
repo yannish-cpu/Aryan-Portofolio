@@ -6,7 +6,8 @@ import { useEffect, useRef } from "react";
  * Animated topographic contour field, drawn with a tiny WebGL2 fragment shader.
  * Thin brass iso-lines drift slowly; a soft warm light follows the pointer.
  * - Pauses when off-screen or when the tab is hidden.
- * - Draws a single still frame for prefers-reduced-motion.
+ * - Draws a single still frame for prefers-reduced-motion or software-only GL.
+ * - Starts after load + idle, capped at 30 fps, reduced resolution on phones.
  * - Falls back to the CSS background of the parent if WebGL2 is unavailable.
  */
 
@@ -115,14 +116,22 @@ export function HeroCanvas({ className }: { className?: string }) {
     const uTime = gl.getUniformLocation(program, "uTime");
     const uPointer = gl.getUniformLocation(program, "uPointer");
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Software GL (no GPU) makes a continuous shader expensive: show one still frame instead.
+    const debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
+    const renderer = debugInfo ? String(gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL)) : "";
+    const softwareGl = /swiftshader|llvmpipe|software|basic render/i.test(renderer);
+    const reduceMotion = prefersReducedMotion || softwareGl;
+    const isSmallScreen = window.innerWidth < 768;
+    const FRAME_INTERVAL = 1000 / 30;
     let width = 0;
     let height = 0;
     const target = { x: 0, y: 0 };
     const pointer = { x: 0, y: 0 };
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, window.innerWidth < 768 ? 1 : 1.5);
+      // Thin contour lines stay crisp at reduced resolution; this keeps GPU cost low on phones.
+      const dpr = Math.min(window.devicePixelRatio || 1, isSmallScreen ? 0.75 : 1.25);
       width = Math.max(1, Math.floor(canvas.clientWidth * dpr));
       height = Math.max(1, Math.floor(canvas.clientHeight * dpr));
       canvas.width = width;
@@ -144,6 +153,8 @@ export function HeroCanvas({ className }: { className?: string }) {
 
     let frame = 0;
     let running = false;
+    let started = false;
+    let lastDraw = 0;
     const start = performance.now();
 
     const draw = (now: number) => {
@@ -156,12 +167,15 @@ export function HeroCanvas({ className }: { className?: string }) {
     };
 
     const loop = (now: number) => {
-      draw(now);
+      if (now - lastDraw >= FRAME_INTERVAL) {
+        lastDraw = now;
+        draw(now);
+      }
       if (running) frame = requestAnimationFrame(loop);
     };
 
     const play = () => {
-      if (running || reduceMotion) return;
+      if (running || reduceMotion || !started) return;
       running = true;
       frame = requestAnimationFrame(loop);
     };
@@ -187,11 +201,30 @@ export function HeroCanvas({ className }: { className?: string }) {
     visibility.observe(canvas);
 
     const onVisibilityChange = () => (document.visibilityState === "visible" ? play() : pause());
+
+    // Start animating only once the page has loaded and the main thread is idle.
+    let idleHandle = 0;
+    const begin = () => {
+      started = true;
+      const rect = canvas.getBoundingClientRect();
+      if (rect.bottom > 0 && rect.top < window.innerHeight) play();
+    };
+    const scheduleStart = () => {
+      // Safari has no requestIdleCallback; fall back to a short delay.
+      const ric: typeof window.requestIdleCallback | undefined = window.requestIdleCallback;
+      idleHandle = ric ? ric.call(window, begin, { timeout: 2500 }) : window.setTimeout(begin, 1200);
+    };
+    if (document.readyState === "complete") scheduleStart();
+    else window.addEventListener("load", scheduleStart, { once: true });
     document.addEventListener("visibilitychange", onVisibilityChange);
     if (!reduceMotion) window.addEventListener("pointermove", onPointerMove, { passive: true });
 
     return () => {
       pause();
+      window.removeEventListener("load", scheduleStart);
+      const cic: typeof window.cancelIdleCallback | undefined = window.cancelIdleCallback;
+      if (cic) cic.call(window, idleHandle);
+      window.clearTimeout(idleHandle);
       resizeObserver.disconnect();
       visibility.disconnect();
       document.removeEventListener("visibilitychange", onVisibilityChange);

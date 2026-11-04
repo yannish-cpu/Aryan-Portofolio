@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { MotionProvider } from "@/components/motion-provider";
 import { SITE_URL, profile } from "@/content/site";
 import "./globals.css";
@@ -21,7 +22,7 @@ const instrumentSerif = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
-const title = `${profile.name} | ${profile.role}`;
+const title = `${profile.name} | Web Designer in Malaysia & Indonesia`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -34,20 +35,13 @@ export const metadata: Metadata = {
     title,
     description: profile.intro,
     siteName: profile.name,
-    images: [
-      {
-        url: profile.portrait.src,
-        width: profile.portrait.width,
-        height: profile.portrait.height,
-        alt: profile.portrait.alt,
-      },
-    ],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: `${profile.name}, website design for businesses` }],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description: profile.intro,
-    images: [profile.portrait.src],
+    images: ["/og.png"],
   },
 };
 
@@ -64,6 +58,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="grain min-h-svh">
         <MotionProvider>{children}</MotionProvider>
+        <Analytics />
       </body>
     </html>
   );

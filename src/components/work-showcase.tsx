@@ -53,7 +53,7 @@ function ProjectBlock({
         >
           {project.title}
         </h3>
-        <p className="mt-5 font-mono text-[11px] uppercase tracking-[0.16em]" style={{ color: project.accent }}>
+        <p className="mt-5 font-mono text-xs uppercase tracking-[0.16em]" style={{ color: project.accent }}>
           {project.category} · {project.country}
         </p>
         <p className="mt-6 max-w-md text-lg leading-relaxed text-subtle text-pretty">{project.description}</p>
@@ -87,7 +87,7 @@ function ProjectBlock({
               <span className="size-2.5 rounded-full bg-white/20" />
               <span className="size-2.5 rounded-full bg-white/20" />
             </span>
-            <span className="mx-auto truncate rounded-full bg-white/8 px-4 py-1 font-mono text-[11px] text-subtle">
+            <span className="mx-auto truncate rounded-full bg-white/8 px-4 py-1 font-mono text-xs text-subtle">
               {project.domain}
             </span>
           </div>

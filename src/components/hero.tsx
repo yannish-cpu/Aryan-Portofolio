@@ -97,7 +97,7 @@ export function Hero() {
         </div>
 
         <motion.div
-          className="mt-10 flex items-center justify-between border-t border-foreground/15 pt-4 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground lg:mt-14"
+          className="mt-10 flex items-center justify-between border-t border-foreground/15 pt-4 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground lg:mt-14"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 1.3 }}

@@ -30,7 +30,7 @@ export function FloatingNav() {
             <li key={link.href} className={link.className}>
               <Link
                 href={link.href}
-                className="inline-flex h-10 items-center rounded-full px-3 font-mono text-[11px] uppercase tracking-[0.14em] text-subtle transition-colors duration-300 hover:bg-white/8 hover:text-foreground sm:px-4"
+                className="inline-flex h-10 items-center rounded-full px-3 font-mono text-xs uppercase tracking-[0.14em] text-subtle transition-colors duration-300 hover:bg-white/8 hover:text-foreground sm:px-4"
               >
                 {link.label}
               </Link>
@@ -41,7 +41,7 @@ export function FloatingNav() {
           href={whatsapp.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex h-10 shrink-0 items-center gap-2 rounded-full bg-accent px-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent-foreground transition-colors duration-500 hover:bg-foreground sm:px-4"
+          className="inline-flex h-10 shrink-0 items-center gap-2 rounded-full bg-accent px-3 font-mono text-xs uppercase tracking-[0.14em] text-accent-foreground transition-colors duration-500 hover:bg-foreground sm:px-4"
         >
           <MessageCircle className="size-4" aria-hidden />
           <span className="hidden sm:inline">Let&rsquo;s talk</span>

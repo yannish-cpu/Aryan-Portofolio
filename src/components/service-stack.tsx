@@ -48,7 +48,7 @@ function ServiceCard({
             {service.tags.map((tag) => (
               <li
                 key={tag}
-                className="rounded-full border border-white/12 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.1em] text-subtle"
+                className="rounded-full border border-white/12 px-3 py-1.5 font-mono text-xs uppercase tracking-[0.1em] text-subtle"
               >
                 {tag}
               </li>
@@ -63,7 +63,7 @@ function ServiceCard({
             sizes="(min-width: 768px) 50vw, 100vw"
             className="object-cover object-top"
           />
-          <figcaption className="absolute bottom-3 left-3 rounded-full bg-black/65 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-foreground backdrop-blur-md">
+          <figcaption className="absolute bottom-3 left-3 rounded-full bg-black/65 px-3 py-1.5 font-mono text-xs uppercase tracking-[0.14em] text-foreground backdrop-blur-md">
             Example: {project.title}
           </figcaption>
         </figure>

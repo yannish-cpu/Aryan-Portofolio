@@ -22,7 +22,7 @@ export const profile = {
   },
 } as const;
 
-const WHATSAPP_NUMBER = "60178234700"; // Malaysia, local 017-823 4700
+export const WHATSAPP_NUMBER = "60178234700"; // Malaysia, local 017-823 4700
 const WHATSAPP_MESSAGE = "Hi Aryan, I'd like to build a website with you.";
 
 export const whatsapp = {

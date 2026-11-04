@@ -91,9 +91,17 @@ export default function Home() {
               What I can <em className="text-accent">build</em> for you
             </h2>
             <p className="max-w-sm self-end text-lg leading-relaxed text-subtle text-pretty lg:col-span-4 lg:col-start-9">
-              Every site is mobile-first, fast to load and built so customers can reach you on WhatsApp in one tap.{" "}
-              <Link href="/jasa-pembuatan-website" lang="id" className="text-foreground underline decoration-accent underline-offset-4 hover:text-accent">
-                Jasa pembuatan website (Bahasa Indonesia)
+              Every site is mobile-first, fast to load and built so customers can reach you on WhatsApp in one tap.
+            </p>
+            <p className="flex flex-wrap gap-x-5 gap-y-2 self-end font-mono text-xs uppercase tracking-[0.14em] lg:col-span-4 lg:col-start-9">
+              <Link href="/website-design-services" className="link-underline text-foreground">
+                Website design services →
+              </Link>
+              <Link href="/ms/buat-website" hrefLang="ms" lang="ms" className="link-underline text-subtle">
+                Bahasa Melayu
+              </Link>
+              <Link href="/jasa-pembuatan-website" hrefLang="id" lang="id" className="link-underline text-subtle">
+                Bahasa Indonesia
               </Link>
             </p>
           </div>
@@ -144,7 +152,7 @@ export default function Home() {
                   <dl className="grid grid-cols-2 content-start gap-px overflow-hidden rounded-xl border border-black/10 bg-black/10">
                     {facts.map((fact) => (
                       <div key={fact.label} className="bg-[var(--paper-100)] p-5">
-                        <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#6b6458]">
+                        <dt className="font-mono text-xs uppercase tracking-[0.14em] text-[#6b6458]">
                           {fact.label}
                         </dt>
                         <dd className="mt-2 font-display text-2xl leading-tight">{fact.value}</dd>
@@ -189,7 +197,7 @@ export default function Home() {
                 <MessageCircle className="size-5" aria-hidden />
               </span>
               <span className="flex flex-col leading-tight">
-                <span className="font-mono text-[11px] uppercase tracking-[0.14em]">Chat on WhatsApp</span>
+                <span className="font-mono text-xs uppercase tracking-[0.14em]">Chat on WhatsApp</span>
                 <span className="text-lg font-medium tabular-nums">{whatsapp.display}</span>
               </span>
               <span className="sr-only">(opens in a new tab)</span>
@@ -224,9 +232,14 @@ export default function Home() {
 
           <footer className="mt-20 flex flex-col gap-3 font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground sm:flex-row sm:justify-between">
             <span>© 2026 {profile.name}</span>
-            <a href="#top" className="link-underline self-start">
-              Back to top ↑
-            </a>
+            <span className="flex flex-wrap gap-x-6 gap-y-2">
+              <Link href="/privacy" className="link-underline">
+                Privacy
+              </Link>
+              <a href="#top" className="link-underline">
+                Back to top ↑
+              </a>
+            </span>
           </footer>
         </section>
       </main>
