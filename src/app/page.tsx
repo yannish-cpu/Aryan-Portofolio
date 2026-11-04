@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight, MessageCircle } from "lucide-react";
 import { FloatingNav } from "@/components/floating-nav";
 import { Hero } from "@/components/hero";
@@ -90,7 +91,10 @@ export default function Home() {
               What I can <em className="text-accent">build</em> for you
             </h2>
             <p className="max-w-sm self-end text-lg leading-relaxed text-subtle text-pretty lg:col-span-4 lg:col-start-9">
-              Every site is mobile-first, fast to load and built so customers can reach you on WhatsApp in one tap.
+              Every site is mobile-first, fast to load and built so customers can reach you on WhatsApp in one tap.{" "}
+              <Link href="/jasa-pembuatan-website" lang="id" className="text-foreground underline decoration-accent underline-offset-4 hover:text-accent">
+                Jasa pembuatan website (Bahasa Indonesia)
+              </Link>
             </p>
           </div>
           <ServiceStack services={servicesWithExamples} />

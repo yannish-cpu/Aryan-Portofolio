@@ -1,6 +1,10 @@
 import type { MetadataRoute } from "next";
+import { jasaPage } from "@/content/jasa";
 import { SITE_URL } from "@/content/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [{ url: SITE_URL, changeFrequency: "monthly", priority: 1 }];
+  return [
+    { url: SITE_URL, changeFrequency: "monthly", priority: 1 },
+    { url: `${SITE_URL}${jasaPage.path}`, changeFrequency: "monthly", priority: 0.9 },
+  ];
 }
