@@ -22,6 +22,15 @@ export const profile = {
   },
 } as const;
 
+const WHATSAPP_NUMBER = "60178234700"; // Malaysia, local 017-823 4700
+const WHATSAPP_MESSAGE = "Hi Aryan, I'd like to build a website with you.";
+
+export const whatsapp = {
+  label: "WhatsApp",
+  display: "+60 17-823 4700",
+  href: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`,
+} as const;
+
 export type Social = {
   label: string;
   handle: string;
@@ -29,6 +38,11 @@ export type Social = {
 };
 
 export const socials: readonly Social[] = [
+  {
+    label: whatsapp.label,
+    handle: whatsapp.display,
+    href: whatsapp.href,
+  },
   {
     label: "Instagram",
     handle: "@danishalfarid",

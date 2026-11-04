@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, MessageCircle } from "lucide-react";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
-import { profile } from "@/content/site";
+import { profile, whatsapp } from "@/content/site";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -80,15 +80,29 @@ export function Hero() {
             <p className="max-w-md text-lg leading-relaxed text-subtle text-pretty sm:text-xl">
               {profile.intro}
             </p>
-            <a
-              href="#work"
-              className="group inline-flex min-h-11 items-center gap-3 font-mono text-xs uppercase tracking-[0.14em] text-foreground"
-            >
-              <span className="grid size-11 place-items-center rounded-full border border-border transition-colors duration-500 group-hover:border-accent group-hover:text-accent">
-                <ArrowDown className="size-4 transition-transform duration-500 group-hover:translate-y-0.5" aria-hidden />
-              </span>
-              Selected work
-            </a>
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-5">
+              <a
+                href={whatsapp.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex min-h-12 items-center gap-3 rounded-full bg-foreground py-2 pr-6 pl-2 font-mono text-xs uppercase tracking-[0.14em] text-background transition-colors duration-500 hover:bg-accent"
+              >
+                <span className="grid size-9 place-items-center rounded-full bg-background text-foreground">
+                  <MessageCircle className="size-4" aria-hidden />
+                </span>
+                Start a project
+                <span className="sr-only">on WhatsApp (opens in a new tab)</span>
+              </a>
+              <a
+                href="#work"
+                className="group inline-flex min-h-11 items-center gap-3 font-mono text-xs uppercase tracking-[0.14em] text-foreground"
+              >
+                <span className="grid size-11 place-items-center rounded-full border border-border transition-colors duration-500 group-hover:border-accent group-hover:text-accent">
+                  <ArrowDown className="size-4 transition-transform duration-500 group-hover:translate-y-0.5" aria-hidden />
+                </span>
+                Selected work
+              </a>
+            </div>
           </motion.div>
         </div>
 

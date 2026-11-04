@@ -1,10 +1,10 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, MessageCircle } from "lucide-react";
 import { Hero } from "@/components/hero";
 import { Reveal } from "@/components/reveal";
 import { SectionLabel } from "@/components/section-label";
 import { SiteHeader } from "@/components/site-header";
 import { WorkList } from "@/components/work-list";
-import { SITE_URL, profile, projects, socials } from "@/content/site";
+import { SITE_URL, profile, projects, socials, whatsapp } from "@/content/site";
 
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -86,7 +86,29 @@ export default function Home() {
             </h2>
           </Reveal>
 
-          <ul className="mt-16 grid gap-px overflow-hidden border-y border-border sm:grid-cols-2 lg:mt-24">
+          <Reveal delay={0.1} className="mt-12 flex flex-col gap-8 lg:mt-16 lg:flex-row lg:items-end lg:justify-between">
+            <p className="max-w-lg text-lg leading-relaxed text-subtle text-pretty sm:text-xl">
+              Need a website for your business, shop or brand? Message me on WhatsApp and
+              let&rsquo;s talk about what you need.
+            </p>
+            <a
+              href={whatsapp.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex min-h-14 items-center gap-4 self-start rounded-full bg-foreground py-2 pr-7 pl-2 text-background transition-colors duration-500 hover:bg-accent lg:self-auto"
+            >
+              <span className="grid size-10 place-items-center rounded-full bg-background text-foreground">
+                <MessageCircle className="size-5" aria-hidden />
+              </span>
+              <span className="flex flex-col leading-tight">
+                <span className="font-mono text-[11px] uppercase tracking-[0.14em]">Chat on WhatsApp</span>
+                <span className="text-lg font-medium tabular-nums">{whatsapp.display}</span>
+              </span>
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
+          </Reveal>
+
+          <ul className="mt-16 grid gap-px overflow-hidden border-y border-border sm:grid-cols-3 lg:mt-24">
             {socials.map((social) => (
               <li key={social.label}>
                 <a
@@ -99,7 +121,7 @@ export default function Home() {
                     <span className="block font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground">
                       {social.label}
                     </span>
-                    <span className="mt-2 block font-display text-4xl transition-colors duration-500 group-hover:text-accent sm:text-5xl">
+                    <span className="mt-2 block font-display text-4xl transition-colors duration-500 group-hover:text-accent sm:text-3xl lg:text-5xl">
                       {social.handle}
                     </span>
                   </span>
