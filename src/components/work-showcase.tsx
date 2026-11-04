@@ -67,7 +67,7 @@ function ProjectBlock({
           <span className="grid size-8 place-items-center rounded-full bg-foreground text-background transition-transform duration-500 group-hover:rotate-45">
             <ArrowUpRight className="size-4" aria-hidden />
           </span>
-          <span className="sr-only">— {project.domain} (opens in a new tab)</span>
+          <span className="sr-only">{project.domain} (opens in a new tab)</span>
         </a>
       </motion.div>
 

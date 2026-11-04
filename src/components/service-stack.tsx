@@ -64,7 +64,7 @@ function ServiceCard({
             className="object-cover object-top"
           />
           <figcaption className="absolute bottom-3 left-3 rounded-full bg-black/65 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-foreground backdrop-blur-md">
-            Example — {project.title}
+            Example: {project.title}
           </figcaption>
         </figure>
       </motion.article>

@@ -54,7 +54,7 @@ export function Hero() {
           className="mb-6 font-mono text-xs uppercase tracking-[0.2em] text-subtle"
           {...fadeUp(0.1)}
         >
-          (Portfolio — 2026) &nbsp;/&nbsp; {profile.role}
+          (Portfolio 2026) &nbsp;/&nbsp; {profile.role}
         </motion.p>
 
         <h1

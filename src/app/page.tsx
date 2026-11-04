@@ -58,9 +58,9 @@ export default function Home() {
           <ScrollStatement
             className="max-w-[22ch] font-display text-[clamp(2.25rem,6vw,5.5rem)] leading-[1.02] tracking-[-0.02em] text-balance"
             segments={[
-              { text: "I build websites for real businesses —" },
-              { text: "hotels, beauty brands and online stores", emphasis: true },
-              { text: "— moving fast from an idea to a live site people actually use." },
+              { text: "I build websites for real businesses like" },
+              { text: "hotels, beauty brands and online stores,", emphasis: true },
+              { text: "moving fast from an idea to a live site people actually use." },
             ]}
           />
         </section>
@@ -125,7 +125,7 @@ export default function Home() {
                     id="about-title"
                     className="font-display text-[clamp(2.5rem,5.5vw,5rem)] leading-[1] tracking-[-0.02em] text-balance"
                   >
-                    From Indonesia, studying in Malaysia —{" "}
+                    From Indonesia, studying in Malaysia,{" "}
                     <em className="text-[#735630]">building the web</em> one idea at a time.
                   </h2>
                 </Reveal>

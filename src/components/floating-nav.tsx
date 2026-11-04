@@ -22,7 +22,7 @@ export function FloatingNav() {
           className="grid size-10 shrink-0 place-items-center rounded-full bg-foreground text-background transition-colors duration-500 hover:bg-accent"
         >
           <LogoMark className="size-7 translate-x-px" />
-          <span className="sr-only">Aryan Danish — back to top</span>
+          <span className="sr-only">Aryan Danish, back to top</span>
         </a>
         <ul className="flex items-center">
           {links.map((link) => (

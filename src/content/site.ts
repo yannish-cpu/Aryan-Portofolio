@@ -9,7 +9,7 @@ export const profile = {
   basedIn: "Malaysia",
   timeZone: "Asia/Kuala_Lumpur",
   intro:
-    "A student from Indonesia, studying in Malaysia. I love vibe coding — turning ideas into real websites that people actually use.",
+    "A student from Indonesia, studying in Malaysia. I love vibe coding: turning ideas into real websites that people actually use.",
   about: [
     "I'm Aryan, an Indonesian student living and studying in Malaysia.",
     "What I enjoy most is vibe coding: moving fast from an idea to a working, live website. So far that has meant building sites for hotels, beauty brands and online stores on both sides of the Strait of Malacca.",
@@ -77,7 +77,7 @@ export const projects: readonly Project[] = [
     category: "Hospitality",
     country: "Indonesia",
     description:
-      "Website for a sharia hotel in Lhoksukon, Aceh — rooms, nightly rates, facilities and booking via WhatsApp.",
+      "Website for a sharia hotel in Lhoksukon, Aceh, with rooms, nightly rates, facilities and booking via WhatsApp.",
     href: "https://mkmuliahotel.com/",
     domain: "mkmuliahotel.com",
     image: "/work/mkmulia.jpg",
@@ -103,7 +103,7 @@ export const projects: readonly Project[] = [
     category: "E-commerce",
     country: "Malaysia",
     description:
-      "Store for perfume, cosmetics and personal care in Malaysia — product categories and a simple WhatsApp ordering flow.",
+      "Store for perfume, cosmetics and personal care in Malaysia, with product categories and a simple WhatsApp ordering flow.",
     href: "https://aryannstore.vercel.app/",
     domain: "aryannstore.vercel.app",
     image: "/work/aryannstore.jpg",
@@ -116,7 +116,7 @@ export const projects: readonly Project[] = [
     category: "Wholesale",
     country: "Malaysia",
     description:
-      "Official website for a Kuala Lumpur beauty and daily-needs wholesaler — store details, location and WhatsApp QR.",
+      "Official website for a Kuala Lumpur beauty and daily-needs wholesaler, with store details, location and a WhatsApp QR code.",
     href: "https://hawabeauty.com.my/",
     domain: "hawabeauty.com.my",
     image: "/work/hawa.jpg",
@@ -150,7 +150,7 @@ export const services: readonly Service[] = [
   {
     title: "Business websites",
     description:
-      "A clear, fast site that tells customers who you are, what you offer and how to reach you — like the MK Mulia Hotel site with rooms, rates and booking.",
+      "A clear, fast site that tells customers who you are, what you offer and how to reach you, like the MK Mulia Hotel site with rooms, rates and booking.",
     tags: ["Mobile-first", "WhatsApp booking", "Google-friendly"],
     example: "mk-mulia-hotel",
   },

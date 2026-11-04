@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design tokens — single source of truth.
+ * Design tokens: single source of truth.
  * Warm near-black canvas, warm off-white ink, one muted brass accent.
  */
 :root {
@@ -101,7 +101,7 @@
   }
 }
 
-/* Static film grain — adds texture to flat dark surfaces. */
+/* Static film grain: adds texture to flat dark surfaces. */
 .grain::after {
   content: "";
   position: fixed;
