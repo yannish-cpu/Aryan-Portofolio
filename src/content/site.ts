@@ -64,6 +64,10 @@ export type Project = {
   href: string;
   domain: string;
   image: string;
+  /** Dark background tint sampled from the project's own palette. */
+  tint: string;
+  /** Readable accent from the project's palette, used for small labels. */
+  accent: string;
 };
 
 export const projects: readonly Project[] = [
@@ -77,6 +81,8 @@ export const projects: readonly Project[] = [
     href: "https://mkmuliahotel.com/",
     domain: "mkmuliahotel.com",
     image: "/work/mkmulia.jpg",
+    tint: "#231d12",
+    accent: "#c9a25a",
   },
   {
     slug: "astika-cosmetic",
@@ -88,6 +94,8 @@ export const projects: readonly Project[] = [
     href: "https://astikacosmetic.netlify.app/",
     domain: "astikacosmetic.netlify.app",
     image: "/work/astika.jpg",
+    tint: "#1c1230",
+    accent: "#bfa3e6",
   },
   {
     slug: "aryann-store",
@@ -99,6 +107,8 @@ export const projects: readonly Project[] = [
     href: "https://aryannstore.vercel.app/",
     domain: "aryannstore.vercel.app",
     image: "/work/aryannstore.jpg",
+    tint: "#0e1526",
+    accent: "#8fb0ea",
   },
   {
     slug: "hawa-beauty",
@@ -110,6 +120,8 @@ export const projects: readonly Project[] = [
     href: "https://hawabeauty.com.my/",
     domain: "hawabeauty.com.my",
     image: "/work/hawa.jpg",
+    tint: "#17140e",
+    accent: "#d8bb73",
   },
   {
     slug: "jelita-beauty",
@@ -121,5 +133,39 @@ export const projects: readonly Project[] = [
     href: "https://jelitabeauty.netlify.app/",
     domain: "jelitabeauty.netlify.app",
     image: "/work/jelita.jpg",
+    tint: "#1d1910",
+    accent: "#d2c178",
+  },
+];
+
+export type Service = {
+  title: string;
+  description: string;
+  tags: readonly string[];
+  /** Slug of the project that best shows this kind of work. */
+  example: Project["slug"];
+};
+
+export const services: readonly Service[] = [
+  {
+    title: "Business websites",
+    description:
+      "A clear, fast site that tells customers who you are, what you offer and how to reach you — like the MK Mulia Hotel site with rooms, rates and booking.",
+    tags: ["Mobile-first", "WhatsApp booking", "Google-friendly"],
+    example: "mk-mulia-hotel",
+  },
+  {
+    title: "Online stores",
+    description:
+      "Product catalogues that make ordering easy, sending customers straight to WhatsApp or TikTok Shop to buy.",
+    tags: ["Product catalogue", "WhatsApp / TikTok Shop ordering", "Fast loading"],
+    example: "aryann-store",
+  },
+  {
+    title: "Wholesale & reseller sites",
+    description:
+      "Official pages for wholesalers: store details, location, opening hours and a quick way for resellers to get stock and prices.",
+    tags: ["Store details", "Maps & QR", "Reseller enquiries"],
+    example: "hawa-beauty",
   },
 ];

@@ -11,7 +11,7 @@
 
 ## Avoid
 - Generic "AI site" look: centered hero + gradient blob + 3 identical feature cards.
-- Neon text, heavy glows, glassmorphism overload, generic purple/indigo gradients.
+- Neon text, heavy glows, glassmorphism overload, generic purple/indigo gradients. Exception (requested by the owner, v2): the hero's WebGL contour field may carry a soft warm brass light — keep it warm, low-saturation and confined to the hero.
 - Emojis as decoration or icons (use Lucide where an icon is needed).
 - Repetitive card grids and overused template patterns; vary section structure and rhythm.
 - Animation for its own sake: parallax everywhere, looping effects, scroll-jacking, cursor gimmicks.
@@ -19,4 +19,5 @@
 
 ## Process
 - Before designing any UI, consult `.claude/skills/frontend-design` (aesthetic direction) and `.claude/skills/ui-ux-pro-max` (`scripts/search.py` for palettes, type pairings, UX checks). Treat their output as input, not as the answer: reject suggestions that violate "Avoid" above.
-- v1 direction: warm near-black, off-white ink, one muted brass accent; Instrument Serif (display) + Geist (text). Tokens live in `src/app/globals.css` — change them there, not ad hoc.
+- v2 direction (inspired by techniques on farizul.com — never copy its logo, copy, imagery, ribbons, coordinates marquee or fonts): animated topographic hero, floating pill nav, scroll-lit statement, colour-shifting project showcase, stacked service cards, light About section.
+- Palette/type: warm near-black, off-white ink, one muted brass accent; Instrument Serif (display) + Geist (text). Tokens live in `src/app/globals.css` — change them there, not ad hoc.

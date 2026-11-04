@@ -1,10 +1,13 @@
+import Image from "next/image";
 import { ArrowUpRight, MessageCircle } from "lucide-react";
+import { FloatingNav } from "@/components/floating-nav";
 import { Hero } from "@/components/hero";
 import { Reveal } from "@/components/reveal";
+import { ScrollStatement } from "@/components/scroll-statement";
 import { SectionLabel } from "@/components/section-label";
-import { SiteHeader } from "@/components/site-header";
-import { WorkList } from "@/components/work-list";
-import { SITE_URL, profile, projects, socials, whatsapp } from "@/content/site";
+import { ServiceStack } from "@/components/service-stack";
+import { WorkShowcase } from "@/components/work-showcase";
+import { SITE_URL, profile, projects, services, socials, whatsapp } from "@/content/site";
 
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -14,8 +17,21 @@ const personJsonLd = {
   image: `${SITE_URL}${profile.portrait.src}`,
   description: profile.intro,
   nationality: profile.origin,
-  sameAs: socials.map((s) => s.href),
+  sameAs: socials.filter((s) => !s.href.includes("wa.me")).map((s) => s.href),
 };
+
+const servicesWithExamples = services.map((service) => {
+  const exampleProject = projects.find((p) => p.slug === service.example);
+  if (!exampleProject) throw new Error(`Unknown example project: ${service.example}`);
+  return { ...service, exampleProject };
+});
+
+const facts = [
+  { label: "From", value: profile.origin },
+  { label: "Based in", value: profile.basedIn },
+  { label: "Focus", value: "Websites for businesses" },
+  { label: "Live projects", value: String(projects.length).padStart(2, "0") },
+] as const;
 
 const container = "mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12";
 
@@ -28,53 +44,121 @@ export default function Home() {
       />
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:bg-foreground focus:px-4 focus:py-2 focus:text-background"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:rounded-full focus:bg-foreground focus:px-4 focus:py-2 focus:text-background"
       >
         Skip to content
       </a>
-      <SiteHeader />
+      <FloatingNav />
 
       <main id="main">
         <Hero />
 
-        <section id="work" aria-labelledby="work-title" className={`${container} scroll-mt-16 py-20 lg:py-32`}>
-          <h2 id="work-title" className="sr-only">
-            Selected work
-          </h2>
-          <SectionLabel index="01" aside={String(projects.length).padStart(2, "0")}>
-            Selected work
-          </SectionLabel>
-          <WorkList projects={projects} />
+        <section aria-label="Introduction" className={`${container} py-28 lg:py-44`}>
+          <SectionLabel index="00">Hello</SectionLabel>
+          <ScrollStatement
+            className="max-w-[22ch] font-display text-[clamp(2.25rem,6vw,5.5rem)] leading-[1.02] tracking-[-0.02em] text-balance"
+            segments={[
+              { text: "I build websites for real businesses —" },
+              { text: "hotels, beauty brands and online stores", emphasis: true },
+              { text: "— moving fast from an idea to a live site people actually use." },
+            ]}
+          />
         </section>
 
-        <section id="about" aria-labelledby="about-title" className={`${container} scroll-mt-16 py-20 lg:py-32`}>
-          <SectionLabel index="02">About</SectionLabel>
-          <div className="grid gap-10 lg:grid-cols-12">
-            <Reveal className="lg:col-span-8">
-              <h2
-                id="about-title"
-                className="font-display text-[clamp(2.5rem,6.5vw,5.75rem)] leading-[1] tracking-[-0.02em] text-balance"
-              >
-                From Indonesia, studying in Malaysia —{" "}
-                <em className="text-accent">building the web</em> one idea at a time.
-              </h2>
-            </Reveal>
-            <Reveal delay={0.15} className="flex flex-col gap-5 lg:col-span-4 lg:col-start-9 lg:self-end">
-              {profile.about.map((paragraph) => (
-                <p key={paragraph} className="text-lg leading-relaxed text-subtle text-pretty">
-                  {paragraph}
-                </p>
-              ))}
-            </Reveal>
+        <section id="work" aria-labelledby="work-title" className="scroll-mt-0">
+          <div className={`${container} pb-4`}>
+            <SectionLabel index="01" aside={String(projects.length).padStart(2, "0")}>
+              Selected work
+            </SectionLabel>
+            <h2
+              id="work-title"
+              className="font-display text-[clamp(3.5rem,11vw,10rem)] leading-[0.88] tracking-[-0.03em]"
+            >
+              Selected <em className="text-accent">work</em>
+            </h2>
+          </div>
+          <WorkShowcase projects={projects} />
+        </section>
+
+        <section id="services" aria-labelledby="services-title" className={`${container} scroll-mt-0 pt-28 lg:pt-40`}>
+          <SectionLabel index="02">Services</SectionLabel>
+          <div className="mb-16 grid gap-8 lg:mb-24 lg:grid-cols-12">
+            <h2
+              id="services-title"
+              className="font-display text-[clamp(3rem,8vw,7.5rem)] leading-[0.9] tracking-[-0.03em] lg:col-span-7"
+            >
+              What I can <em className="text-accent">build</em> for you
+            </h2>
+            <p className="max-w-sm self-end text-lg leading-relaxed text-subtle text-pretty lg:col-span-4 lg:col-start-9">
+              Every site is mobile-first, fast to load and built so customers can reach you on WhatsApp in one tap.
+            </p>
+          </div>
+          <ServiceStack services={servicesWithExamples} />
+        </section>
+
+        <section
+          id="about"
+          aria-labelledby="about-title"
+          className="scroll-mt-0 bg-[var(--paper-100)] py-28 text-[var(--ink-950)] lg:py-40"
+        >
+          <div className={container}>
+            <div className="mb-10 flex items-baseline justify-between font-mono text-xs uppercase tracking-[0.14em] text-[#5c554b] lg:mb-14">
+              <span>
+                <span className="text-[#735630]">(03)</span> About
+              </span>
+            </div>
+            <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+              <Reveal className="lg:col-span-5">
+                <figure className="relative aspect-[4/5] overflow-hidden rounded-xl">
+                  <Image
+                    src={profile.portrait.src}
+                    alt={profile.portrait.alt}
+                    fill
+                    sizes="(min-width: 1024px) 40vw, 100vw"
+                    className="object-cover object-top"
+                  />
+                </figure>
+              </Reveal>
+              <div className="flex flex-col justify-between gap-12 lg:col-span-7">
+                <Reveal>
+                  <h2
+                    id="about-title"
+                    className="font-display text-[clamp(2.5rem,5.5vw,5rem)] leading-[1] tracking-[-0.02em] text-balance"
+                  >
+                    From Indonesia, studying in Malaysia —{" "}
+                    <em className="text-[#735630]">building the web</em> one idea at a time.
+                  </h2>
+                </Reveal>
+                <Reveal delay={0.1} className="grid gap-10 md:grid-cols-2">
+                  <div className="flex flex-col gap-5">
+                    {profile.about.map((paragraph) => (
+                      <p key={paragraph} className="text-lg leading-relaxed text-[#3d3831] text-pretty">
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
+                  <dl className="grid grid-cols-2 content-start gap-px overflow-hidden rounded-xl border border-black/10 bg-black/10">
+                    {facts.map((fact) => (
+                      <div key={fact.label} className="bg-[var(--paper-100)] p-5">
+                        <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#6b6458]">
+                          {fact.label}
+                        </dt>
+                        <dd className="mt-2 font-display text-2xl leading-tight">{fact.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </Reveal>
+              </div>
+            </div>
           </div>
         </section>
 
         <section
           id="contact"
           aria-labelledby="contact-title"
-          className={`${container} scroll-mt-16 border-t border-border pt-20 pb-10 lg:pt-32`}
+          className={`${container} scroll-mt-0 pt-28 pb-10 lg:pt-40`}
         >
-          <SectionLabel index="03">Contact</SectionLabel>
+          <SectionLabel index="04">Contact</SectionLabel>
           <Reveal>
             <h2
               id="contact-title"
@@ -82,7 +166,7 @@ export default function Home() {
             >
               Let&rsquo;s build
               <br />
-              <em className="text-subtle">something.</em>
+              <em className="text-accent">something.</em>
             </h2>
           </Reveal>
 
