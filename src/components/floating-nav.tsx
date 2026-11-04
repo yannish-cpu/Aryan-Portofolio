@@ -1,4 +1,5 @@
 import { MessageCircle } from "lucide-react";
+import { LogoMark } from "@/components/logo-mark";
 import { whatsapp } from "@/content/site";
 
 const links = [
@@ -18,9 +19,9 @@ export function FloatingNav() {
       >
         <a
           href="#top"
-          className="grid size-10 shrink-0 place-items-center rounded-full bg-foreground font-display text-lg leading-none text-background italic transition-colors duration-500 hover:bg-accent"
+          className="grid size-10 shrink-0 place-items-center rounded-full bg-foreground text-background transition-colors duration-500 hover:bg-accent"
         >
-          <span aria-hidden>ad</span>
+          <LogoMark className="size-7 translate-x-px" />
           <span className="sr-only">Aryan Danish — back to top</span>
         </a>
         <ul className="flex items-center">
