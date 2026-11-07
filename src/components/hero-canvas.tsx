@@ -7,7 +7,7 @@ import { useEffect, useRef } from "react";
  * Thin brass iso-lines drift slowly; a soft warm light follows the pointer.
  * - Pauses when off-screen or when the tab is hidden.
  * - Draws a single still frame for prefers-reduced-motion or software-only GL.
- * - Starts after load + idle, capped at 30 fps, reduced resolution on phones.
+ * - Starts after load + idle, capped at 30 fps.
  * - Falls back to the CSS background of the parent if WebGL2 is unavailable.
  */
 
@@ -22,10 +22,12 @@ uniform float uTime;
 uniform vec2 uPointer;
 out vec4 outColor;
 
+// Integer hash on lattice points: exact on every GPU (float fract() hashes lose precision
+// on some drivers and draw straight streaks across the field).
 float hash(vec2 p) {
-  p = fract(p * vec2(123.34, 456.21));
-  p += dot(p, p + 45.32);
-  return fract(p.x * p.y);
+  uvec2 q = uvec2(ivec2(p) + 32768) * uvec2(1597334673u, 3812015801u);
+  uint n = (q.x ^ q.y) * 1597334673u;
+  return float(n) * (1.0 / 4294967295.0);
 }
 float noise(vec2 p) {
   vec2 i = floor(p), f = fract(p);
@@ -130,8 +132,8 @@ export function HeroCanvas({ className }: { className?: string }) {
     const pointer = { x: 0, y: 0 };
 
     const resize = () => {
-      // Thin contour lines stay crisp at reduced resolution; this keeps GPU cost low on phones.
-      const dpr = Math.min(window.devicePixelRatio || 1, isSmallScreen ? 0.75 : 1.25);
+      // Full-ish resolution keeps the thin contour lines smooth (lower values alias into dashes).
+      const dpr = Math.min(window.devicePixelRatio || 1, isSmallScreen ? 1 : 1.5);
       width = Math.max(1, Math.floor(canvas.clientWidth * dpr));
       height = Math.max(1, Math.floor(canvas.clientHeight * dpr));
       canvas.width = width;
